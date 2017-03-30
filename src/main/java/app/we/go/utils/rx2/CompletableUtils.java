@@ -8,13 +8,23 @@ import io.reactivex.functions.Consumer;
 public class CompletableUtils {
 
     private CompletableUtils() {
-        // Private constractor for static utils class
+        // Private constructor for static utils class
     }
 
 
-    public static Single<Boolean> toSingle(Completable completable, @Nullable Consumer<? super Throwable> consumer) {
+    /**
+     * Receives a {@link Completable} and returns a {@link Single<Boolean>} that emits <code>true</code>
+     * if the <code>Completable</code> completes successful, <code>false</code> otherwise.
+     * An action to performed in case or error can also be passed through the argument
+     * <code>exceptionConsumer</code>
+     *
+     * @param completable       The input {@link Completable}
+     * @param exceptionConsumer A consumer to execute in case the {@link Completable} terminates with an error.
+     * @return The {@link Single<Boolean>}, as described above.
+     */
+    public static Single<Boolean> toSingle(Completable completable, @Nullable Consumer<? super Throwable> exceptionConsumer) {
         return completable
-                .doOnError(consumer == null ? throwable -> {} : consumer)
+                .doOnError(exceptionConsumer == null ? throwable -> {} : exceptionConsumer)
                 .toSingleDefault(true)
                 .onErrorReturnItem(false);
     }

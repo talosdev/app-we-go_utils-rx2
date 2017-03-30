@@ -1,11 +1,11 @@
 group 'com.github.talosdev'
-version '0.0.2'
 
 apply plugin: 'java'
 apply from: 'constants.gradle'
 apply plugin: 'maven'
 
-sourceCompatibility = 1.8
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
 
 repositories {
     mavenCentral()
