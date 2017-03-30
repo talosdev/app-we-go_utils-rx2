@@ -3,6 +3,7 @@ group 'com.github.talosdev'
 apply plugin: 'java'
 apply from: 'constants.gradle'
 apply plugin: 'maven'
+apply plugin: 'me.tatarka.retrolambda'
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
