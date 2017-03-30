@@ -3,7 +3,6 @@ group 'com.github.talosdev'
 apply plugin: 'java'
 apply from: 'constants.gradle'
 apply plugin: 'maven'
-apply plugin: 'me.tatarka.retrolambda'
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
@@ -12,7 +11,17 @@ repositories {
     mavenCentral()
 }
 
+
+buildscript {
+    dependencies {
+        classpath 'me.tatarka:gradle-retrolambda:3.6.0'
+    }
+}
+
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     compileOnly "io.reactivex.rxjava2:rxjava:${project.ext.RX_JAVA_VERSION}"
 }
+
+apply plugin: 'me.tatarka.retrolambda'
+
