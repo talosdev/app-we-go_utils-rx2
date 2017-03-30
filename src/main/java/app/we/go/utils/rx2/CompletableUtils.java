@@ -12,7 +12,7 @@ public class CompletableUtils {
     }
 
 
-    public Single<Boolean> toSingle(Completable completable, @Nullable Consumer<? super Throwable> consumer) {
+    public static Single<Boolean> toSingle(Completable completable, @Nullable Consumer<? super Throwable> consumer) {
         return completable
                 .doOnError(consumer == null ? throwable -> {} : consumer)
                 .toSingleDefault(true)
