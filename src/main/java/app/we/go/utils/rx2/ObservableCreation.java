@@ -28,4 +28,22 @@ public class ObservableCreation {
             e.onComplete();
         });
     }
+
+    /**
+     * Creates an {@link Observable} that emits all lines of a {@link BufferedReader} as {@link String}s
+     * and closes the reader on termination.
+     *
+     * @param reader The {@link BufferedReader} to read from
+     * @return An {@link Observable} that emits {@link String}s.
+     * <p>
+     * TODO make this an operator (<code>autoClose</code>) that can be applied to {@link #fromBufferedReader(BufferedReader)}
+     */
+    public static Observable<String> fromBufferedReaderAutoClose(BufferedReader reader) {
+
+        return Observable.using(
+                () -> reader,
+                ObservableCreation::fromBufferedReader,
+                BufferedReader::close
+        );
+    }
 }
