@@ -20,10 +20,8 @@ public class ObservableCreation {
     public static Observable<String> fromBufferedReader(BufferedReader reader) {
         return Observable.create(e -> {
             String line;
-            while ((line = reader.readLine()) != null) {
-                if (!e.isDisposed()) {
-                    e.onNext(line);
-                }
+            while (!e.isDisposed() && (line = reader.readLine()) != null) {
+                e.onNext(line);
             }
             e.onComplete();
         });
