@@ -10,7 +10,7 @@ import io.reactivex.SingleTransformer;
  */
 public interface SchedulersTransformerFactory {
 
-    <U> ObservableTransformer<U, U> forObservables();
+    <U> ObservableTransformer<U, U> forObservable();
     <U> SingleTransformer<U, U> forSingle();
     CompletableTransformer forCompletable();
 
