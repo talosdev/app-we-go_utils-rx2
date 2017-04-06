@@ -20,6 +20,9 @@ public class ObservableCreation {
     public static Observable<String> fromBufferedReader(BufferedReader reader) {
         return Observable.create(e -> {
             String line;
+            // Notice that we need to check whether the emitter has been closed
+            // before reading the next line, because the reader might have been auto-closed
+            // onDispose
             while (!e.isDisposed() && (line = reader.readLine()) != null) {
                 e.onNext(line);
             }
