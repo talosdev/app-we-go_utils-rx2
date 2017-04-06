@@ -10,8 +10,8 @@ import io.reactivex.SingleTransformer;
  */
 public interface TransformerFactory {
 
-    <U,D> ObservableTransformer<U, D> getObservableTransformer();
-    <U,D> SingleTransformer<U, D> getSingleTransformer();
+    <U> ObservableTransformer<U, U> getObservableTransformer();
+    <U> SingleTransformer<U, U> getSingleTransformer();
     CompletableTransformer getCompletableTransformer();
 
 }
